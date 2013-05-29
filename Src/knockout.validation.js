@@ -687,6 +687,20 @@
         },
         message: 'Please choose another value.'
     };
+	
+	ko.validation.rules['mustNotContain'] = {
+        validator: function (val, params) {
+            var blacklistItens = params;
+            var isValid = true;
+            ko.utils.arrayForEach(blacklistItens, function (blackListItem) {
+                if (val.indexOf(blackListItem) > 0) {
+                    isValid = false;
+                }
+            });
+            return isValid;
+        },
+        message: 'Please check the correct pattern.'
+    };
 
     //unique in collection
     // options are:
